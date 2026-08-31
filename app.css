@@ -1,0 +1,1384 @@
+/* ==========================================================================
+   APP STYLES
+   Organised in the order things appear: layout helpers, then navigation,
+   hero, sections, cards, forms, order drawer, footer, and finally the
+   responsive adjustments.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LAYOUT HELPERS
+   -------------------------------------------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding-inline: var(--page-pad);
+}
+
+.wrap--narrow {
+  max-width: 720px;
+}
+
+/* Bands set the background and the vertical rhythm of a full-width section. */
+.band {
+  padding-block: var(--space-2xl);
+}
+
+.band--parchment {
+  background: var(--parchment);
+  color: var(--text-on-light);
+}
+
+.band--taupe {
+  background: var(--taupe);
+  color: var(--text-on-light);
+}
+
+.band--ink {
+  background: var(--ink);
+  color: var(--text-on-dark);
+}
+
+/* Pages are bands with a little extra room under the navigation bar. */
+.page {
+  padding-block: calc(var(--space-2xl) + 3rem) var(--space-2xl);
+  min-height: 70vh;
+}
+
+.page--parchment {
+  background: var(--parchment);
+  color: var(--text-on-light);
+}
+
+.page--ink {
+  background: var(--ink);
+  color: var(--text-on-dark);
+}
+
+.page--center {
+  display: grid;
+  place-items: center;
+  text-align: left;
+}
+
+.page__head {
+  margin-bottom: var(--space-xl);
+}
+
+.page__title {
+  font-size: var(--size-h1);
+  margin-bottom: var(--space-md);
+  max-width: 18ch;
+}
+
+.page__intro {
+  font-size: 1.1rem;
+  color: inherit;
+  opacity: 0.82;
+  max-width: 46ch;
+}
+
+.page__notice {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--taupe-line);
+  color: var(--text-on-light-dim);
+}
+
+.section-head {
+  max-width: 46ch;
+  margin-bottom: var(--space-xl);
+}
+
+.section-head__title {
+  font-size: var(--size-h1);
+  margin-bottom: var(--space-sm);
+}
+
+.section-head__note {
+  color: var(--text-on-light-dim);
+}
+
+.section-foot {
+  margin-top: var(--space-xl);
+}
+
+/* --------------------------------------------------------------------------
+   2. REVEAL ANIMATION
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+
+.reveal.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. BUTTONS AND LINKS
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--flame {
+  background: var(--flame);
+  color: var(--ink);
+}
+
+.btn--flame:hover {
+  background: var(--flame-bright);
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--parchment);
+}
+
+.btn--ink:hover {
+  background: var(--ember);
+}
+
+.btn--ghost {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn--ghost:hover {
+  background: var(--flame);
+  border-color: var(--flame);
+  color: var(--ink);
+}
+
+.btn--on-light {
+  color: var(--text-on-light);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* A link that underlines on hover rather than by default. */
+.link-underline {
+  color: var(--flame);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.link-underline:hover {
+  border-bottom-color: currentColor;
+}
+
+.link-underline--dark {
+  color: var(--ember);
+}
+
+/* --------------------------------------------------------------------------
+   4. NEON WORDMARK
+   The signature element. Glow is built from layered text shadows so it stays
+   crisp at any size.
+   -------------------------------------------------------------------------- */
+
+.neon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 0.88;
+  color: #ffd9a8;
+  text-shadow: 0 0 4px #fff2dd, 0 0 12px var(--flame), 0 0 28px var(--ember),
+    0 0 60px rgba(196, 35, 26, 0.65);
+}
+
+.neon__dragon {
+  letter-spacing: -0.03em;
+}
+
+.neon__t {
+  color: #ffe6c0;
+  text-shadow: 0 0 4px #fff, 0 0 14px var(--flame-bright), 0 0 34px var(--ember),
+    0 0 70px rgba(232, 93, 25, 0.7);
+}
+
+.neon__sub {
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  color: #ffcf95;
+  text-shadow: 0 0 3px #fff0d8, 0 0 10px var(--flame), 0 0 22px var(--ember);
+}
+
+/* Hero size, on the home page. */
+.neon--hero .neon__dragon {
+  font-size: var(--size-hero);
+}
+
+.neon--hero .neon__t {
+  font-size: calc(var(--size-hero) * 1.25);
+  margin-block: -0.06em -0.02em;
+}
+
+.neon--hero .neon__sub {
+  font-size: clamp(0.7rem, 1.5vw, 1.05rem);
+  margin-top: 0.55em;
+}
+
+/* Small size, in the navigation bar. Laid out on one line. */
+.neon--small {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.28em;
+}
+
+.neon--small .neon__dragon {
+  font-size: 1.32rem;
+}
+
+.neon--small .neon__t {
+  font-size: 1.6rem;
+}
+
+.neon--small .neon__sub {
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  align-self: center;
+}
+
+/* The one piece of motion the visitor did not ask for: the sign coming on.
+   It runs once, on load, and only in the hero. */
+.neon--hero {
+  animation: neon-on 1600ms var(--ease) 1 both;
+}
+
+@keyframes neon-on {
+  0% {
+    opacity: 0.14;
+    text-shadow: none;
+  }
+  12% {
+    opacity: 0.95;
+  }
+  18% {
+    opacity: 0.22;
+    text-shadow: none;
+  }
+  26% {
+    opacity: 1;
+  }
+  32% {
+    opacity: 0.35;
+  }
+  44% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon--hero {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVIGATION
+   -------------------------------------------------------------------------- */
+
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  transition: background var(--dur-mid) var(--ease), border-color var(--dur-mid) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.is-solid,
+.nav.is-open {
+  background: rgba(21, 14, 7, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--ink-line);
+}
+
+.nav__inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0.9rem var(--page-pad);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav__brand {
+  flex-shrink: 0;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-left: auto;
+}
+
+.nav__link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-on-dark);
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.nav__link:hover {
+  color: var(--flame);
+}
+
+.nav__link.is-active {
+  color: var(--flame);
+  border-bottom-color: var(--flame);
+}
+
+.nav__ig {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-on-dark-dim);
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius-pill);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.nav__ig:hover {
+  color: var(--flame);
+  border-color: var(--flame);
+}
+
+.nav__toggle {
+  display: none;
+  margin-left: auto;
+  padding: 0.6rem;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav__bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-on-dark);
+  transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+
+.nav.is-open .nav__bar:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.nav.is-open .nav__bar:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.nav__panel {
+  display: none;
+  flex-direction: column;
+  padding: var(--space-md) var(--page-pad) var(--space-lg);
+  border-top: 1px solid var(--ink-line);
+}
+
+.nav__panel-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--text-on-dark);
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--ink-line);
+}
+
+.nav__panel-link--ig {
+  color: var(--flame);
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: min(92vh, 860px);
+  display: flex;
+  align-items: flex-end;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__photo .photo {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+}
+
+/* When the hero photo is still a placeholder, its label sits behind the
+   wordmark, so it recedes to a quiet note in the top corner rather than
+   competing for attention. */
+.hero__photo .photo--empty {
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 5.5rem 2rem;
+  border: none;
+}
+
+.hero__photo .photo__mark {
+  display: none;
+}
+
+.hero__photo .photo__label,
+.hero__photo .photo__hint {
+  opacity: 0.3;
+  text-align: right;
+}
+
+/* Darkens the lower half so the text stays readable over any photograph. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--ink) 4%,
+    rgba(21, 14, 7, 0.86) 38%,
+    rgba(21, 14, 7, 0.42) 72%,
+    rgba(21, 14, 7, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad) clamp(3rem, 8vh, 6rem);
+}
+
+.hero__sign {
+  margin-bottom: var(--space-lg);
+}
+
+.hero__where {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-on-dark);
+  letter-spacing: 0.02em;
+}
+
+.hero__status {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  background: var(--flame);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   7. PHOTO AND PLACEHOLDERS
+   -------------------------------------------------------------------------- */
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  background: var(--taupe);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The placeholder shown until a real file is dropped in. Styled to look
+   deliberate rather than broken. */
+.photo--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.photo--light {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--taupe),
+    var(--taupe) 9px,
+    #d3c2ab 9px,
+    #d3c2ab 18px
+  );
+  color: var(--text-on-light-dim);
+  border: 1px solid var(--taupe-line);
+}
+
+.photo--dark {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink-soft),
+    var(--ink-soft) 9px,
+    #2c1c0b 9px,
+    #2c1c0b 18px
+  );
+  color: var(--text-on-dark-dim);
+  border: 1px solid var(--ink-line);
+}
+
+/* A small tea-leaf mark, so the empty state carries the brand. */
+.photo__mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 0 100% 0 100%;
+  background: var(--flame);
+  opacity: 0.5;
+  transform: rotate(-20deg);
+}
+
+.photo__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--size-small);
+  line-height: 1.25;
+}
+
+.photo__hint {
+  font-family: var(--font-body);
+  font-size: var(--size-tiny);
+  opacity: 0.62;
+  max-width: 22ch;
+}
+
+/* --------------------------------------------------------------------------
+   8. GRIDS AND DRINK CARDS
+   -------------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--drinks {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.drink {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drink__photo {
+  margin-bottom: var(--space-sm);
+  transition: transform var(--dur-mid) var(--ease);
+}
+
+.drink:hover .drink__photo {
+  transform: translateY(-5px);
+}
+
+.drink__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.35rem;
+}
+
+.drink__name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--size-h3);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.drink__note {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-on-light-dim);
+  flex: 1;
+}
+
+.drink__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--taupe-line);
+}
+
+.drink__price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.drink__add {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ember);
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease);
+  margin-left: auto;
+}
+
+.drink__add:hover {
+  border-bottom-color: var(--ember);
+}
+
+/* --------------------------------------------------------------------------
+   9. SPLIT SECTIONS
+   -------------------------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.split--reverse .split__media {
+  order: 2;
+}
+
+.split__title {
+  font-size: var(--size-h2);
+  margin-bottom: var(--space-md);
+}
+
+.split__text p {
+  margin-bottom: var(--space-md);
+}
+
+.split__list {
+  margin-bottom: var(--space-md);
+  border-top: 1px solid currentColor;
+}
+
+.split__list li {
+  padding-block: 0.6rem;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.visit-address {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+}
+
+.visit-address--lg {
+  font-size: 1.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. MENU PAGE
+   -------------------------------------------------------------------------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.filter {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.5rem 1.05rem;
+  border: 1px solid var(--taupe-line);
+  border-radius: var(--radius-pill);
+  color: var(--text-on-light);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.filter:hover {
+  border-color: var(--ink);
+}
+
+.filter.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--parchment);
+}
+
+.filters__count {
+  font-size: var(--size-small);
+  color: var(--text-on-light-dim);
+  margin-bottom: var(--space-lg);
+}
+
+.toppings {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--ink);
+}
+
+.toppings__title {
+  font-size: var(--size-h2);
+  margin-bottom: var(--space-xs);
+}
+
+.toppings__note {
+  color: var(--text-on-light-dim);
+  margin-bottom: var(--space-md);
+}
+
+.toppings__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.toppings__list li {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  padding: 0.45rem 1rem;
+  background: var(--taupe);
+  border-radius: var(--radius-pill);
+}
+
+/* --------------------------------------------------------------------------
+   11. ABOUT PAGE
+   -------------------------------------------------------------------------- */
+
+.prose {
+  max-width: 68ch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  font-size: 1.08rem;
+}
+
+.prose__heading {
+  font-size: var(--size-h2);
+  margin-bottom: var(--space-sm);
+}
+
+.prose__photo {
+  margin-block: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   12. VISIT PAGE
+   -------------------------------------------------------------------------- */
+
+.visit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.visit__heading {
+  font-size: var(--size-h2);
+  margin-bottom: var(--space-md);
+}
+
+.visit__flag {
+  font-size: var(--size-small);
+  color: var(--flame);
+  margin-bottom: var(--space-sm);
+}
+
+.visit__transit {
+  color: var(--text-on-dark-dim);
+  margin-bottom: var(--space-md);
+}
+
+.visit__contact {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hours {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+}
+
+.hours th,
+.hours td {
+  text-align: left;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--ink-line);
+  font-weight: 400;
+}
+
+.hours td {
+  text-align: right;
+  color: var(--text-on-dark-dim);
+}
+
+.hours tr.is-today th,
+.hours tr.is-today td {
+  color: var(--flame);
+  font-weight: 600;
+}
+
+.map {
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius-photo);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.35) contrast(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   13. GALLERY
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  columns: 3;
+  column-gap: var(--space-md);
+}
+
+.gallery__cell {
+  break-inside: avoid;
+  margin-bottom: var(--space-md);
+}
+
+.gallery__btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  transition: transform var(--dur-mid) var(--ease);
+}
+
+.gallery__btn:hover {
+  transform: scale(1.015);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(11, 7, 3, 0.94);
+  display: grid;
+  place-items: center;
+  padding: var(--space-lg);
+  animation: fade-in var(--dur-mid) var(--ease);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox__inner {
+  max-width: min(720px, 90vw);
+  max-height: 86vh;
+}
+
+.lightbox__inner .photo {
+  max-height: 78vh;
+}
+
+.lightbox__caption {
+  margin-top: var(--space-sm);
+  text-align: center;
+  color: var(--text-on-dark-dim);
+  font-size: var(--size-small);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text-on-dark);
+  padding: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. FORMS
+   -------------------------------------------------------------------------- */
+
+.contact-direct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--taupe-line);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-on-light);
+  background: #fbf6ee;
+  border: 1px solid var(--taupe-line);
+  border-radius: var(--radius-photo);
+  padding: 0.75rem 0.9rem;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--flame);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(232, 93, 25, 0.18);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.field__error {
+  font-size: var(--size-small);
+  color: var(--ember);
+  font-weight: 500;
+}
+
+.field [aria-invalid='true'] {
+  border-color: var(--ember);
+}
+
+.form-sent {
+  padding: var(--space-lg);
+  background: var(--taupe);
+  border-radius: var(--radius-photo);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.form-sent__title {
+  font-size: var(--size-h2);
+}
+
+.form-sent code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   15. ORDER DRAWER
+   -------------------------------------------------------------------------- */
+
+.order-tab {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--parchment);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 20px rgba(11, 7, 3, 0.35);
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.order-tab:hover {
+  transform: translateY(-2px);
+}
+
+.order-tab.is-filled {
+  background: var(--flame);
+  border-color: var(--flame);
+}
+
+.order-tab__count {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding-inline: 6px;
+  background: var(--ink);
+  color: var(--parchment);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+}
+
+.order-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(11, 7, 3, 0.6);
+  animation: fade-in var(--dur-fast) var(--ease);
+}
+
+.order {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  width: min(400px, 100vw);
+  background: var(--parchment);
+  color: var(--text-on-light);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(102%);
+  transition: transform var(--dur-mid) var(--ease);
+  box-shadow: -8px 0 30px rgba(11, 7, 3, 0.3);
+}
+
+.order.is-open {
+  transform: none;
+}
+
+.order__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-bottom: 2px solid var(--ink);
+}
+
+.order__title {
+  font-size: 1.35rem;
+}
+
+.order__close {
+  font-size: 1.9rem;
+  line-height: 1;
+  padding: 0 0.4rem;
+}
+
+.order__empty {
+  padding: var(--space-lg) var(--space-md);
+  color: var(--text-on-light-dim);
+}
+
+.order__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.order__item {
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--taupe-line);
+}
+
+.order__item-main {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: 0.4rem;
+}
+
+.order__item-name {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+
+.order__item-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.order__qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order__qty button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--taupe-line);
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.order__qty button:hover {
+  border-color: var(--ink);
+}
+
+.order__qty > span {
+  min-width: 1.5rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.order__drop {
+  margin-left: auto;
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+  font-family: var(--font-display);
+  font-size: 0.8rem !important;
+  color: var(--text-on-light-dim);
+  text-decoration: underline;
+}
+
+.order__drop:hover {
+  color: var(--ember);
+}
+
+.order__foot {
+  padding: var(--space-md);
+  border-top: 2px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.order__msg {
+  font-size: var(--size-small);
+  color: var(--text-on-light-dim);
+}
+
+.order__clear {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  color: var(--text-on-light-dim);
+  text-decoration: underline;
+  align-self: center;
+}
+
+.order__clear:hover {
+  color: var(--ember);
+}
+
+/* --------------------------------------------------------------------------
+   16. FOOTER
+   -------------------------------------------------------------------------- */
+
+.footer {
+  background: var(--ink);
+  color: var(--text-on-dark);
+  border-top: 1px solid var(--ink-line);
+  padding-top: var(--space-xl);
+}
+
+.footer__inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding-inline: var(--page-pad);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.footer__name {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--flame);
+}
+
+.footer__heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-on-dark-dim);
+  margin-bottom: var(--space-sm);
+}
+
+.footer__address {
+  font-style: normal;
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.footer__note {
+  color: var(--text-on-dark-dim);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer__base {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--space-md) var(--page-pad);
+  border-top: 1px solid var(--ink-line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--size-small);
+  color: var(--text-on-dark-dim);
+}
+
+/* --------------------------------------------------------------------------
+   17. RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .nav__links,
+  .nav__ig {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav.is-open .nav__panel {
+    display: flex;
+  }
+
+  .split,
+  .split--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .split--reverse .split__media {
+    order: 0;
+  }
+
+  .gallery {
+    columns: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid--drinks {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .gallery {
+    columns: 1;
+  }
+
+  .order {
+    width: 100vw;
+  }
+
+  .order-tab {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+  }
+
+  .hero {
+    min-height: 88vh;
+  }
+}

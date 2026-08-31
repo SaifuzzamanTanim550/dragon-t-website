@@ -1,0 +1,103 @@
+/* ==========================================================================
+   BASE
+   Resets, typography defaults, and things that apply site-wide.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text-on-dark);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  max-width: 62ch; /* keeps lines readable */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Keyboard focus must always be visible. */
+:focus-visible {
+  outline: 2px solid var(--flame);
+  outline-offset: 3px;
+}
+
+/* Screen-reader-only text. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link for keyboard users. */
+.skip-link {
+  position: absolute;
+  left: var(--space-md);
+  top: -100px;
+  z-index: 200;
+  background: var(--flame);
+  color: var(--ink);
+  padding: 0.7rem 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  transition: top var(--dur-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}

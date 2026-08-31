@@ -1,0 +1,90 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   Every colour, size, and font in the site is defined here.
+   Change a value here and it updates everywhere. This is the file to edit
+   first if you want to adjust the look.
+   ========================================================================== */
+
+:root {
+  /* --- Colour ------------------------------------------------------------
+     Pulled from the shop's own photography, so the site matches the brand.  */
+
+  --ink: #150e07;          /* warm brown-black — boba pearls, logo outline   */
+  --ink-soft: #241708;     /* raised surfaces on dark sections               */
+  --ink-line: #3a2612;     /* hairlines on dark sections                     */
+
+  --parchment: #f4eada;    /* the Dream 11 poster background                 */
+  --taupe: #dccdb9;        /* the Brown Sugar ad background                  */
+  --taupe-line: #c4b199;   /* hairlines on light sections                    */
+
+  --flame: #e85d19;        /* the logo orange — primary accent               */
+  --flame-bright: #ff7a33; /* hover state for flame                          */
+  --ember: #c4231a;        /* the neon sign red — glow and emphasis          */
+  --jade: #4f6b3a;         /* matcha green, from the Matcha Latte cup        */
+
+  /* Text colours, named by where they sit rather than by hue. */
+  --text-on-dark: #f4eada;
+  --text-on-dark-dim: #b9a68e;
+  --text-on-light: #24170c;
+  --text-on-light-dim: #6b5741;
+
+  /* --- Type --------------------------------------------------------------
+     Two families, clearly distinct:
+     Archivo  — headlines, navigation, buttons, anything structural
+     Zilla Slab — drink names and reading prose, echoing the printed menu  */
+
+  --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-body: 'Zilla Slab', Georgia, serif;
+
+  /* Type scale. Fluid, so it reads well from phone to desktop. */
+  --size-hero: clamp(2.75rem, 9vw, 6.5rem);
+  --size-h1: clamp(2.25rem, 5.5vw, 3.75rem);
+  --size-h2: clamp(1.65rem, 3.2vw, 2.4rem);
+  --size-h3: clamp(1.2rem, 2vw, 1.45rem);
+  --size-body: clamp(1rem, 1.1vw, 1.0625rem);
+  --size-small: 0.875rem;
+  --size-tiny: 0.78rem;
+
+  /* --- Layout ------------------------------------------------------------ */
+
+  --page-max: 1200px;
+  --page-pad: clamp(1.25rem, 5vw, 4rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: clamp(4rem, 10vw, 7.5rem);
+
+  /* Radii are deliberately not uniform. Photos and cards get a small radius;
+     structural blocks get none. Uniform rounding on everything is the tell
+     of a template. */
+  --radius-photo: 3px;
+  --radius-pill: 999px;
+
+  /* --- Motion ------------------------------------------------------------ */
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-mid: 320ms;
+  --dur-slow: 620ms;
+}
+
+/* Anyone who has asked their system to reduce motion gets a still site. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-mid: 1ms;
+    --dur-slow: 1ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
